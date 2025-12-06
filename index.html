@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="聖誕節交換禮物抽籤系統">
+    <title>聖誕節交換禮物抽籤</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- SheetJS Library for Excel parsing -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <!-- Snowflakes background decoration -->
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+    </div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="title">
+                <span class="decoration">🎄</span>
+                聖誕節交換禮物抽籤
+                <span class="decoration">🎁</span>
+            </h1>
+            <p class="subtitle">一起分享聖誕喜悅</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-card">
+                    <div class="upload-icon">📂</div>
+                    <h2>上傳參與者名單</h2>
+                    <p class="upload-hint">請上傳包含參與者資訊的 Excel 檔案</p>
+
+                    <label for="fileInput" class="file-label">
+                        <span class="file-button">選擇 Excel 檔案</span>
+                        <input
+                            type="file"
+                            id="fileInput"
+                            accept=".xlsx, .xls"
+                            aria-label="上傳 Excel 檔案"
+                        >
+                    </label>
+
+                    <div id="participantInfo" class="participant-info" style="display: none;">
+                        <span class="info-icon">👥</span>
+                        <span id="participantCount">已匯入 0 位參與者</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Message Box for notifications -->
+            <div id="messageBox" class="message-box" style="display: none;">
+                <div class="message-content">
+                    <span class="message-icon"></span>
+                    <span class="message-text"></span>
+                    <button class="message-close" aria-label="關閉訊息">&times;</button>
+                </div>
+            </div>
+
+            <!-- Action Buttons Section -->
+            <section class="action-section">
+                <button
+                    id="drawBtn"
+                    class="btn btn-primary"
+                    disabled
+                    aria-label="開始抽籤"
+                >
+                    <span class="btn-icon">🎲</span>
+                    開始抽籤
+                </button>
+                <button
+                    id="redrawBtn"
+                    class="btn btn-secondary"
+                    style="display: none;"
+                    aria-label="重新抽籤"
+                >
+                    <span class="btn-icon">🔄</span>
+                    重新抽籤
+                </button>
+            </section>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="results-section" style="display: none;">
+                <h2 class="results-title">
+                    <span class="decoration">✨</span>
+                    配對結果
+                    <span class="decoration">✨</span>
+                </h2>
+
+                <div class="table-container">
+                    <table id="resultTable" class="result-table">
+                        <caption>聖誕禮物交換配對表</caption>
+                        <thead>
+                            <tr>
+                                <th colspan="4" class="section-header giver-section">送禮者</th>
+                                <th class="arrow-cell"></th>
+                                <th colspan="4" class="section-header receiver-section">收禮者</th>
+                            </tr>
+                            <tr>
+                                <th>姓名</th>
+                                <th>IG 帳號</th>
+                                <th>電話</th>
+                                <th>7-11 店鋪</th>
+                                <th class="arrow-cell">→</th>
+                                <th>姓名</th>
+                                <th>IG 帳號</th>
+                                <th>電話</th>
+                                <th>7-11 店鋪</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultTableBody">
+                            <!-- Results will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🎅 Merry Christmas! 🎄</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

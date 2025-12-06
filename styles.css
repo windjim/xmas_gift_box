@@ -1,0 +1,697 @@
+/* ===================================
+   CSS Variables - Color Scheme
+   =================================== */
+:root {
+    --christmas-red: #C41E3A;
+    --christmas-green: #0F8A5F;
+    --gold: #FFD700;
+    --white: #FFFFFF;
+    --bg-light: #F5F5F5;
+    --card-bg: #FFFFFF;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+/* ===================================
+   Reset & Base Styles
+   =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===================================
+   Snowflakes Background Animation
+   =================================== */
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: var(--white);
+    font-size: 1.5em;
+    opacity: 0.8;
+    animation: snowfall linear infinite;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.snowflake:nth-child(1) { left: 10%; animation-duration: 10s; animation-delay: 0s; }
+.snowflake:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 2s; font-size: 1.2em; }
+.snowflake:nth-child(3) { left: 30%; animation-duration: 8s; animation-delay: 4s; font-size: 1.8em; }
+.snowflake:nth-child(4) { left: 40%; animation-duration: 14s; animation-delay: 1s; }
+.snowflake:nth-child(5) { left: 50%; animation-duration: 11s; animation-delay: 3s; font-size: 1.4em; }
+.snowflake:nth-child(6) { left: 60%; animation-duration: 9s; animation-delay: 5s; }
+.snowflake:nth-child(7) { left: 70%; animation-duration: 13s; animation-delay: 2s; font-size: 1.6em; }
+.snowflake:nth-child(8) { left: 80%; animation-duration: 10s; animation-delay: 4s; }
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+/* ===================================
+   Container & Layout
+   =================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===================================
+   Header Section
+   =================================== */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.title {
+    font-size: 2.5em;
+    color: var(--christmas-red);
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px var(--shadow);
+    font-weight: bold;
+}
+
+.title .decoration {
+    display: inline-block;
+    animation: bounce 2s infinite;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: var(--christmas-green);
+    font-weight: 500;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   Upload Section
+   =================================== */
+.upload-section {
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out 0.2s backwards;
+}
+
+.upload-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px var(--shadow);
+    text-align: center;
+    border: 3px solid var(--christmas-green);
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--christmas-red), var(--gold), var(--christmas-green));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.upload-card:hover::before {
+    opacity: 0.1;
+}
+
+.upload-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.upload-card h2 {
+    color: var(--christmas-red);
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.upload-hint {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+}
+
+/* File Input Styling */
+.file-label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.file-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, var(--christmas-green), #0D6F4A);
+    color: var(--white);
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(15, 138, 95, 0.3);
+}
+
+.file-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(15, 138, 95, 0.4);
+}
+
+.file-button:active {
+    transform: translateY(0) scale(1);
+}
+
+#fileInput {
+    display: none;
+}
+
+/* Participant Info */
+.participant-info {
+    margin-top: 25px;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--christmas-green);
+    animation: slideInUp 0.5s ease-out;
+}
+
+.info-icon {
+    font-size: 1.3em;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   Message Box
+   =================================== */
+.message-box {
+    margin: 20px 0;
+    animation: slideInUp 0.4s ease-out;
+}
+
+.message-content {
+    padding: 20px 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px var(--shadow);
+    position: relative;
+}
+
+.message-box.success .message-content {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    border-left: 5px solid #28a745;
+}
+
+.message-box.warning .message-content {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    border-left: 5px solid #ffc107;
+}
+
+.message-box.error .message-content {
+    background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+    border-left: 5px solid #dc3545;
+}
+
+.message-icon {
+    font-size: 1.8em;
+}
+
+.message-text {
+    flex: 1;
+    font-size: 1.05em;
+    color: var(--text-primary);
+    white-space: pre-line;
+}
+
+.message-close {
+    background: transparent;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-close:hover {
+    color: var(--text-primary);
+}
+
+/* ===================================
+   Action Buttons
+   =================================== */
+.action-section {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    animation: fadeIn 1s ease-out 0.4s backwards;
+}
+
+.btn {
+    padding: 18px 45px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--christmas-red), #9B1630);
+    color: var(--white);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 25px rgba(196, 30, 58, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--gold), #E6C200);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-icon {
+    font-size: 1.3em;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===================================
+   Results Section
+   =================================== */
+.results-section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.results-title {
+    text-align: center;
+    font-size: 2em;
+    color: var(--christmas-red);
+    margin-bottom: 30px;
+}
+
+.results-title .decoration {
+    display: inline-block;
+    animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* Table Container */
+.table-container {
+    overflow-x: auto;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow);
+    padding: 20px;
+}
+
+/* Result Table */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+}
+
+.result-table caption {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--christmas-green);
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.result-table thead {
+    background: linear-gradient(135deg, var(--christmas-red), var(--christmas-green));
+    color: var(--white);
+}
+
+.result-table th {
+    padding: 15px 10px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-header {
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+
+.giver-section {
+    background: rgba(196, 30, 58, 0.2);
+}
+
+.receiver-section {
+    background: rgba(15, 138, 95, 0.2);
+}
+
+.arrow-cell {
+    background: rgba(255, 215, 0, 0.3);
+    font-size: 1.5em;
+    width: 50px;
+}
+
+.result-table tbody tr {
+    animation: fadeInRow 0.5s ease-out backwards;
+    transition: background-color 0.3s;
+}
+
+.result-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+.result-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+.result-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+.result-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+.result-table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+.result-table tbody tr:nth-child(n+6) { animation-delay: 0.6s; }
+
+@keyframes fadeInRow {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.result-table tbody tr:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+}
+
+.result-table tbody tr:nth-child(even) {
+    background-color: rgba(245, 245, 245, 0.5);
+}
+
+.result-table td {
+    padding: 15px 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.result-table td.arrow-cell {
+    font-size: 1.5em;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+/* ===================================
+   Footer
+   =================================== */
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-size: 1.1em;
+    animation: fadeIn 1s ease-out 0.6s backwards;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+    .container {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 2em;
+    }
+
+    .upload-card {
+        padding: 30px 20px;
+    }
+
+    .result-table {
+        font-size: 0.9em;
+    }
+
+    .result-table th,
+    .result-table td {
+        padding: 12px 8px;
+    }
+}
+
+/* Mobile (320px - 767px) */
+@media (max-width: 767px) {
+    .title {
+        font-size: 1.6em;
+    }
+
+    .subtitle {
+        font-size: 1em;
+    }
+
+    .upload-card {
+        padding: 25px 15px;
+        border-radius: 15px;
+    }
+
+    .upload-card h2 {
+        font-size: 1.4em;
+    }
+
+    .upload-icon {
+        font-size: 3em;
+    }
+
+    .file-button {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+
+    .participant-info {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+
+    .action-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 15px 35px;
+        font-size: 1.1em;
+        justify-content: center;
+    }
+
+    .results-title {
+        font-size: 1.5em;
+    }
+
+    .table-container {
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    .result-table {
+        font-size: 0.75em;
+        display: block;
+        overflow-x: auto;
+    }
+
+    .result-table th,
+    .result-table td {
+        padding: 10px 5px;
+        white-space: nowrap;
+    }
+
+    .arrow-cell {
+        width: 30px;
+        font-size: 1.2em;
+    }
+
+    .message-content {
+        padding: 15px 20px;
+        font-size: 0.95em;
+    }
+
+    .message-icon {
+        font-size: 1.5em;
+    }
+
+    .snowflake {
+        font-size: 1em;
+    }
+
+    .footer {
+        margin-top: 30px;
+        font-size: 1em;
+    }
+}
+
+/* Very small mobile (320px - 374px) */
+@media (max-width: 374px) {
+    .title {
+        font-size: 1.4em;
+    }
+
+    .result-table {
+        font-size: 0.7em;
+    }
+
+    .result-table th,
+    .result-table td {
+        padding: 8px 4px;
+    }
+}
+
+/* ===================================
+   Print Styles (Optional)
+   =================================== */
+@media print {
+    .snowflakes,
+    .upload-section,
+    .action-section,
+    .message-box {
+        display: none;
+    }
+
+    body {
+        background: white;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .result-table {
+        font-size: 0.9em;
+    }
+}
